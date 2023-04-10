@@ -1,0 +1,6 @@
+{
+    "require": {
+        "pashkevich/loyverse-sdk": "^0.2.2",
+        "aws/aws-sdk-php": "^3.225"
+    }
+}
