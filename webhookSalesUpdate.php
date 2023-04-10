@@ -22,13 +22,11 @@ if($json = file_get_contents("php://input")) {
 
 require 'vendor/autoload.php';
 require 'controller/functions.php';
+require "config.php";
 
 $webhookSales = json_decode($data);
 $receiptData = $webhookSales->receipts;
 foreach($receiptData as $value){
-
-    $checkINbranch = "6a70f137ceaadf4f5a1ec4be7f1db21a";
-    $checkINmerchant = "911095aec34e381e565898b300ed7576";
 
     $receipt_number = $value->receipt_number;
     $order = $value->order;
@@ -85,7 +83,7 @@ $dataArray = array(
 
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.maytapi.com/api/037e4a24-af4e-4d58-9ed4-53e2b2b690c9/19734/sendMessage",
+  CURLOPT_URL => "https://api.maytapi.com/api/".$mayTAPIKey."/19734/sendMessage",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -111,7 +109,7 @@ $dataArray = array(
 $useThis="";if($useThis=="yes"){
     $curl = curl_init();
     curl_setopt_array($curl, array(
-      CURLOPT_URL => "https://api.maytapi.com/api/037e4a24-af4e-4d58-9ed4-53e2b2b690c9/19734/sendMessage",
+      CURLOPT_URL => "https://api.maytapi.com/api/".$mayTAPIKey."/19734/sendMessage",
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => "",
       CURLOPT_MAXREDIRS => 10,

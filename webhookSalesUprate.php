@@ -15,9 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
         header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
 
 }
-require("formBuilder/controller/conn.php");
-require("formBuilder/controller/functions.php");
-require("formBuilder/controller/common.php");
+
+require 'vendor/autoload.php';
+require 'controller/functions.php';
+require "config.php";
 
 if($json = file_get_contents("php://input")) {
     print_r($json);
@@ -34,7 +35,7 @@ $dataArray = array(
 
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.maytapi.com/api/037e4a24-af4e-4d58-9ed4-53e2b2b690c9/19734/sendMessage",
+  CURLOPT_URL => "https://api.maytapi.com/api/".$mayTAPIKey."/19734/sendMessage",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
